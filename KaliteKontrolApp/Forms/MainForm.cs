@@ -193,7 +193,7 @@ public partial class MainForm : Form
             FlatStyle = FlatStyle.Flat,
             BackColor = id == _currentPage ? ThemeColors.Primary50 : Color.White,
             ForeColor = id == _currentPage ? ThemeColors.Primary : ThemeColors.SidebarText,
-            Font = new Font("Segoe UI", 11F, id == _currentPage ? FontStyle.SemiBold : FontStyle.Regular),
+            Font = new Font("Segoe UI", 11F, id == _currentPage ? FontStyle.Bold : FontStyle.Regular),
             Text = "    " + text,
             TextAlign = ContentAlignment.MiddleLeft,
             Image = icon,
@@ -244,7 +244,7 @@ public partial class MainForm : Form
                     {
                         btn.BackColor = btnId == pageId ? ThemeColors.Primary50 : Color.White;
                         btn.ForeColor = btnId == pageId ? ThemeColors.Primary : ThemeColors.SidebarText;
-                        btn.Font = new Font("Segoe UI", 11F, btnId == pageId ? FontStyle.SemiBold : FontStyle.Regular);
+                        btn.Font = new Font("Segoe UI", 11F, btnId == pageId ? FontStyle.Bold : FontStyle.Regular);
                     }
                 }
             }
