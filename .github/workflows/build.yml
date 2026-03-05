@@ -18,11 +18,14 @@ jobs:
       with:
         dotnet-version: 8.0.x
 
+    # Eğer projen alt klasördeyse, working-directory belirt
     - name: Restore
+      working-directory: ./KaliteKontrolApp  # ← Proje klasörünün adı
       run: dotnet restore
 
     - name: Publish EXE
-      run: dotnet publish -c Release -r win-x64 --self-contained true -p:PublishSingleFile=true -o ./publish
+      working-directory: ./KaliteKontrolApp  # ← Proje klasörünün adı
+      run: dotnet publish -c Release -r win-x64 --self-contained true -p:PublishSingleFile=true -o ../publish
 
     - name: Upload Artifact
       uses: actions/upload-artifact@v4
