@@ -23,7 +23,7 @@ public class ModernDataGrid : DataGridView
         EnableHeadersVisualStyles = false;
         ColumnHeadersDefaultCellStyle.BackColor = ThemeColors.Background;
         ColumnHeadersDefaultCellStyle.ForeColor = ThemeColors.TextPrimary;
-        ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 10F, FontStyle.SemiBold);
+        ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
         ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
         ColumnHeadersDefaultCellStyle.Padding = new Padding(12, 8, 12, 8);
         ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
@@ -174,7 +174,7 @@ public class ModernListView : ListView
         
         // Header text
         using var textBrush = new SolidBrush(ThemeColors.TextPrimary);
-        using var font = new Font("Segoe UI", 10F, FontStyle.SemiBold);
+        using var font = new Font("Segoe UI", 10F, FontStyle.Bold);
         var textRect = new Rectangle(e.Bounds.X + 12, e.Bounds.Y, e.Bounds.Width - 24, e.Bounds.Height);
         e.Graphics.DrawString(e.Header.Text, font, textBrush, textRect);
         
