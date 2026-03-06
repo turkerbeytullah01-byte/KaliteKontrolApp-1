@@ -131,9 +131,10 @@ public partial class MainForm : Form
             SizeMode = PictureBoxSizeMode.Zoom
         };
         
+        // DEĞİŞTİ: Şirket adı ARCA yapıldı
         var companyLabel = new Label
         {
-            Text = "Kalite Kontrol",
+            Text = "ARCA",
             Font = new Font("Segoe UI", 14F, FontStyle.Bold),
             ForeColor = ThemeColors.TextPrimary,
             Location = new Point(80, 18),
@@ -161,6 +162,7 @@ public partial class MainForm : Form
             AutoScroll = true
         };
         
+        // DEĞİŞTİ: Hesap makinesi menüye eklendi
         var menuItems = new[]
         {
             ("dashboard", "Ana Sayfa", CreateHomeIcon()),
@@ -168,6 +170,7 @@ public partial class MainForm : Form
             ("measurement", "Ölçüm Raporu", CreateRulerIcon()),
             ("measurementsList", "Tüm Ölçümler", CreateListIcon()),
             ("reports", "Raporlar", CreateChartIcon()),
+            ("calculator", "Hesap Makinesi", CreateCalcIcon()), // YENİ EKLENDİ
             ("settings", "Ayarlar", CreateSettingsIcon())
         };
         
@@ -229,6 +232,7 @@ public partial class MainForm : Form
             ["measurement"] = "Ölçüm Raporu",
             ["measurementsList"] = "Tüm Ölçümler",
             ["reports"] = "Raporlar",
+            ["calculator"] = "Hesap Makinesi", // YENİ EKLENDİ
             ["settings"] = "Ayarlar"
         };
         _titleLabel.Text = titles.GetValueOrDefault(pageId, "Ana Sayfa");
@@ -248,6 +252,16 @@ public partial class MainForm : Form
                     }
                 }
             }
+        }
+        
+        // DEĞİŞTİ: Hesap makinesi için özel açılış
+        if (pageId == "calculator")
+        {
+            using var calc = new CalculatorForm();
+            calc.ShowDialog();
+            // Hesap makinesi kapatıldığında dashboard'a dön
+            LoadPage("dashboard");
+            return;
         }
         
         // Load content
@@ -304,6 +318,7 @@ public partial class MainForm : Form
             "measurement" => "Ölçüm Raporu",
             "measurementsList" => "Tüm Ölçümler",
             "reports" => "Raporlar",
+            "calculator" => "Hesap Makinesi", // YENİ EKLENDİ
             "settings" => "Ayarlar",
             _ => ""
         };
@@ -397,6 +412,25 @@ public partial class MainForm : Form
         return bmp;
     }
     
+    // YENİ EKLENDİ: Hesap makinesi ikonu
+    private Image CreateCalcIcon()
+    {
+        var bmp = new Bitmap(20, 20);
+        using var g = Graphics.FromImage(bmp);
+        g.SmoothingMode = SmoothingMode.AntiAlias;
+        using var pen = new Pen(ThemeColors.Primary, 2);
+        // Dış çerçeve
+        g.DrawRectangle(pen, 2, 2, 16, 16);
+        // Ekran
+        g.DrawLine(pen, 4, 5, 16, 5);
+        // Tuşlar
+        g.DrawLine(pen, 4, 9, 8, 9);
+        g.DrawLine(pen, 4, 13, 8, 13);
+        g.DrawLine(pen, 12, 9, 16, 9);
+        g.DrawLine(pen, 12, 13, 16, 13);
+        return bmp;
+    }
+    
     private Image CreateSettingsIcon()
     {
         var bmp = new Bitmap(20, 20);
@@ -422,16 +456,16 @@ public partial class MainForm : Form
         using var g = Graphics.FromImage(bmp);
         g.SmoothingMode = SmoothingMode.AntiAlias;
         
-        // Background gradient
+        // DEĞİŞTİ: ARCA için koyu mavi/turkuaz renkler
         using var brush = new LinearGradientBrush(new Rectangle(0, 0, 48, 48), 
-            ThemeColors.Primary, ThemeColors.PrimaryDark, 45);
+            Color.FromArgb(0, 100, 180), Color.FromArgb(0, 60, 120), 45);
         g.FillEllipse(brush, 0, 0, 48, 48);
         
-        // Letter Q
+        // DEĞİŞTİ: "A" harfi ARCA için (baş harf)
         using var font = new Font("Segoe UI", 20F, FontStyle.Bold);
         using var textBrush = new SolidBrush(Color.White);
-        var size = g.MeasureString("Q", font);
-        g.DrawString("Q", font, textBrush, (48 - size.Width) / 2, (48 - size.Height) / 2);
+        var size = g.MeasureString("A", font);
+        g.DrawString("A", font, textBrush, (48 - size.Width) / 2, (48 - size.Height) / 2);
         
         return bmp;
     }
