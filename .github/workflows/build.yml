@@ -22,9 +22,9 @@ jobs:
       working-directory: ./KaliteKontrolApp
       run: dotnet restore
 
-    - name: Publish EXE
+       - name: Publish EXE
       working-directory: ./KaliteKontrolApp
-      run: dotnet publish -c Release -r win-x64 --self-contained true -p:PublishSingleFile=false -p:PublishTrimmed=false -p:PublishReadyToRun=false -o ./publish
+      run: dotnet publish -c Release -r win-x64 --self-contained true -p:PublishSingleFile=false -p:PublishTrimmed=false -p:PublishReadyToRun=false -o ../publish
 
     - name: Upload Artifact
       uses: actions/upload-artifact@v4
