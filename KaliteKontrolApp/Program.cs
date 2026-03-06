@@ -15,6 +15,11 @@ static class Program
     [STAThread]
     static void Main()
     {
+        // DPI sorununu çözümleyen satırlar - BU 3 SATIRI EKLEDİM
+        Application.EnableVisualStyles();
+        Application.SetCompatibleTextRenderingDefault(false);
+        Application.SetHighDpiMode(HighDpiMode.PerMonitorV2);
+        
         ApplicationConfiguration.Initialize();
         
         // Flashdisk/Portable mod - uygulamanın bulunduğu klasörde data klasörü oluştur
